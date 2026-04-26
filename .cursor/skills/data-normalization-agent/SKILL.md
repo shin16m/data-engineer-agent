@@ -29,10 +29,11 @@ output: data/processed/
 - Basic unstructured tabular-like text: fixed width, delimiter-mixed exports
 
 ## Fixed Configuration Source
-- デフォルト設定ファイル: `config/normalization_defaults.yaml`
+- デフォルト設定ファイル: `.cursor/config/normalization_defaults.yaml`
 - 毎回この設定を読み込んで処理を開始する。
 - ユーザー依頼が `input` と `output` のみでも処理可能にする。
 - 追加指示がある場合は、固定設定をベースに差分として扱う。
+- 実行に必要なスクリプトは常設せず、処理要求時にその場で生成して利用する。
 
 ## Workflow
 1. **Ingestion profiling**

@@ -9,8 +9,8 @@
 .cursor/
   skills/
     data-normalization-agent/SKILL.md
-config/
-  normalization_defaults.yaml
+  config/
+    normalization_defaults.yaml
 ```
 
 ## Agent Role
@@ -24,7 +24,7 @@ config/
 ## Typical Workflow
 
 1. `input` と `output` だけ受け取る
-2. `config/normalization_defaults.yaml` の固定ルールを読み込む
+2. `.cursor/config/normalization_defaults.yaml` の固定ルールを読み込む
 3. 入力データを正規化テーブルへ変換
 4. 固定の品質ゲートで検証
 5. 変換結果・スキーマ・品質レポートを出力
@@ -39,5 +39,6 @@ output: data/processed/
 
 ## Notes
 
-- 変換ルールと品質チェックは `config/normalization_defaults.yaml` で固定管理します。
+- 変換ルールと品質チェックは `.cursor/config/normalization_defaults.yaml` で固定管理します。
 - 例外対応が必要なときだけ、`overrides` を追加して差分指定します。
+- 実行スクリプトは常設せず、処理依頼時にエージェントが都度生成します。
