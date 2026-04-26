@@ -1,43 +1,43 @@
-# AI Agent Project Template
+# Data Preprocessing Agent
 
-`orchestrator` を中心に複数エージェントが連携する、最小構成のテンプレートです。  
-各エージェントの振る舞いは `SKILL.md` に集約します。
+データ分析前の事前処理に特化した単一エージェント構成です。  
+異なるファイル形式・フォーマットのソースデータを解釈し、正規化されたテーブルデータへ変換します。
 
-## Minimal Structure
+## Structure
 
 ```text
 .cursor/
   skills/
-    orchestrator-agent/SKILL.md
-    requirements-agent/SKILL.md
-    design-agent/SKILL.md
-    implementation-agent/SKILL.md
-    qa-agent/SKILL.md
+    data-normalization-agent/SKILL.md
+config/
+  normalization_defaults.yaml
 ```
 
-## Agent Roles
+## Agent Role
 
-- `orchestrator-agent`
-  - 依頼を分解し、各エージェントへタスクを割り当てる中心役
-- `requirements-agent`
-  - 要件整理、スコープ定義、受け入れ条件の明確化
-- `design-agent`
-  - 設計オプション作成、トレードオフ比較、推奨案提示
-- `implementation-agent`
-  - ファイル単位の実装手順と検証手順を作成
-- `qa-agent`
-  - リスクベースのテスト計画と品質ゲートを定義
+- `data-normalization-agent`
+  - 入力データの形式判定とスキーマ解釈
+  - 列名・型・単位の標準化
+  - フラット化または正規化テーブル分割
+  - 品質チェックと変換結果レポート生成
 
 ## Typical Workflow
 
-1. `orchestrator-agent` が依頼を4フェーズに分解する
-2. `requirements-agent` が受け入れ条件を作る
-3. `design-agent` が実装方針を決める
-4. `implementation-agent` が変更計画を作る
-5. `qa-agent` が品質ゲートを定義する
-6. `orchestrator-agent` が最終統合して完了判定する
+1. `input` と `output` だけ受け取る
+2. `config/normalization_defaults.yaml` の固定ルールを読み込む
+3. 入力データを正規化テーブルへ変換
+4. 固定の品質ゲートで検証
+5. 変換結果・スキーマ・品質レポートを出力
+
+## Minimal Request
+
+```text
+データ事前処理をお願いします。
+input: data/raw/
+output: data/processed/
+```
 
 ## Notes
 
-- 最小構成のため、まずは `SKILL.md` のみで運用可能です。
-- 必要になったら `scripts/` や `tools/` を後から追加してください。
+- 変換ルールと品質チェックは `config/normalization_defaults.yaml` で固定管理します。
+- 例外対応が必要なときだけ、`overrides` を追加して差分指定します。

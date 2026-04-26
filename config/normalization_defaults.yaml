@@ -1,0 +1,61 @@
+version: 1
+profile_name: default-normalization
+
+request_contract:
+  required_fields:
+    - input
+    - output
+  optional_fields:
+    - overrides
+
+input_defaults:
+  detect_encoding: true
+  detect_delimiter: true
+  infer_header: true
+  sample_rows: 1000
+  supported_formats:
+    - csv
+    - tsv
+    - xlsx
+    - json
+    - parquet
+
+schema_defaults:
+  column_name_case: snake_case
+  unify_synonyms: true
+  trim_whitespace: true
+  drop_empty_columns: true
+
+type_defaults:
+  datetime_timezone: UTC
+  date_format: "%Y-%m-%d"
+  boolean_true_values: ["true", "1", "yes", "y"]
+  boolean_false_values: ["false", "0", "no", "n"]
+  numeric_remove_thousands_separator: true
+  currency_to_numeric: true
+
+normalization_defaults:
+  strategy: auto
+  extract_nested_json_to_child_tables: true
+  preserve_source_record_id: true
+  reject_on_missing_required_fields: true
+
+dedup_defaults:
+  enabled: true
+  strategy: primary_key_or_best_effort
+
+quality_gates:
+  enforce_primary_key_uniqueness: true
+  enforce_foreign_key_integrity: true
+  enforce_required_columns: true
+  report_null_rate: true
+  report_duplicate_rate: true
+  report_row_count_reconciliation: true
+
+outputs:
+  format: csv
+  include_schema_file: true
+  include_quality_report: true
+  include_transformation_rules: true
+  include_reject_records: true
+  rejects_subdir: rejects
