@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 
 # Agent-generated artifacts
-data/processed/
+data-out/
+report/
 data/**/rejects/
 *.log

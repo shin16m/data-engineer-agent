@@ -17,8 +17,8 @@ description: Interprets heterogeneous source data and converts it into normalize
 例:
 ```text
 データ事前処理をお願いします。
-input: data/raw/
-output: data/processed/
+input: data-in/
+output: data-out/
 ```
 
 ユーザーから明示されない限り、変換ルールと品質チェックは固定設定を適用する。
@@ -52,7 +52,8 @@ output: data/processed/
    - レコード件数整合、キー一意性、型整合、必須列充足を検証する。
    - 変換前後の差分サマリーとリスクを明示する。
 6. **Delivery**
-   - 正規化後テーブル、スキーマ定義、変換ルール、データ品質レポートを出力する。
+   - 正規化後テーブルと補助ファイルを `output`（例: `data-out/`）へ出力する。
+   - レポート類は `report/` へ出力する。
 
 ## Operational Rules
 - データ意味が曖昧な列は推測で確定せず `Assumptions` として明示する。

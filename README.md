@@ -13,6 +13,9 @@
     data-normalization-agent/SKILL.md
   config/
     normalization_defaults.yaml
+data-in/
+data-out/
+report/
 ```
 
 ## エージェントの役割
@@ -35,8 +38,8 @@
 
 ```text
 データ事前処理をお願いします。
-input: data/raw/
-output: data/processed/
+input: data-in/
+output: data-out/
 ```
 
 ## ペルソナ + スキル構成
@@ -51,8 +54,8 @@ output: data/processed/
 
 ```text
 データ事前処理をお願いします。
-input: data/raw/
-output: data/processed/
+input: data-in/
+output: data-out/
 ```
 
 期待される返却:
@@ -60,6 +63,11 @@ output: data/processed/
 - 出力スキーマ
 - 品質チェック結果（pass/fail）
 - 未解決課題と次アクション
+
+出力先の使い分け:
+- 入力データ: `data-in/`
+- 正規化済みデータ: `data-out/`
+- 実行レポート: `report/`
 
 ## 補足
 
